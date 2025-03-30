@@ -11,7 +11,7 @@
         AllowsTransparency="True" Background="Transparent">
 
     <Border Margin="10" Background="#1F2937" CornerRadius="10"
-            BorderThickness="0" BorderBrush="#1F2937">
+            BorderThickness="0" BorderBrush="#1F2937" Cursor="">
 
         <Border.Effect>
             <DropShadowEffect BlurRadius="15"
@@ -23,7 +23,14 @@
 
         <Grid Margin="6" Background="#1F2937"
               MouseLeftButtonDown="Grid_MouseLeftButtonDown">
-            <fa:ImageAwesome Icon="Microphone" Width="24" Height="20" Margin="5,10,839,238" Foreground="White"/>
+            <fa:ImageAwesome x:Name="MicrophoneOn" Icon="Microphone" Foreground="White" Width="24" Height="20" Margin="5,10,839,238" Cursor="Hand" MouseLeftButtonDown="MicrophoneOn_MouseLeftButtonDown"/>
+            <fa:ImageAwesome x:Name="MicrophoneOff" Icon="MicrophoneSlash" Foreground="White" Width="24" Height="20" Margin="5,10,839,238" Cursor="Hand" MouseLeftButtonDown="MicrophoneOn_MouseLeftButtonDown" Visibility="Hidden"/>
+            <fa:ImageAwesome x:Name="VolumeUp" Icon="VolumeUp" Foreground="White" Width="24" Height="20" Margin="787,10,57,238" Cursor="Hand" MouseLeftButtonDown="VolumeUp_MouseLeftButtonDown"/>
+            <fa:ImageAwesome x:Name="VolumeDown" Icon="VolumeDown" Foreground="White" Width="24" Height="20" Margin="632,10,212,238" Cursor="Hand" MouseLeftButtonDown="VolumeDown_MouseLeftButtonDown"/>
+            <Slider x:Name="Slider" HorizontalAlignment="Left" Margin="662,11,0,0" VerticalAlignment="Top" Width="120" Maximum="100" LargeChange="10" SmallChange="1" Cursor="Hand"/>
+            <fa:ImageAwesome x:Name="CloseButton" Icon="Times" Foreground="White" Width="10" Height="10" Margin="848,10,10,248" Cursor="Hand" MouseLeftButtonDown="CloseButton_MouseLeftButtonDown"/>
+            <ComboBox x:Name="AudioInput" HorizontalAlignment="Left" Margin="36,10,0,0" VerticalAlignment="Top" Width="230" Height="20" Loaded="AudioInput_Loaded" SelectionChanged="AudioInput_SelectionChanged"/>
+            <TextBox x:Name="ComboBoxTemplate" HorizontalAlignment="Left" Margin="36,10,0,238" TextWrapping="Wrap" Text="Select Input Device" VerticalContentAlignment="Center" Width="230" Height="20" Background="Transparent" FontFamily="Bahnschrift" Visibility="Hidden" IsHitTestVisible="False"/>
         </Grid>
     </Border>
 </Window>
