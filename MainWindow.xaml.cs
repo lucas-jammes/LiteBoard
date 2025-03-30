@@ -20,5 +20,14 @@ namespace LiteBoard
         {
             InitializeComponent();
         }
+
+        // Drag window by clicking on the grid
+        private void Grid_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            if (e.LeftButton == MouseButtonState.Pressed)
+            {
+                DragMove();
+            }
+        }
     }
 }

@@ -5,9 +5,23 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:LiteBoard"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800"
-        WindowStyle="None" ResizeMode="NoResize">
-    <Grid Cursor="Arrow" Background="#FF1A202C">
+        Title="LiteBoard" Height="300" Width="900"
+        WindowStyle="None" ResizeMode="NoResize"
+        AllowsTransparency="True" Background="Transparent">
 
-    </Grid>
+    <Border Margin="10" Background="#1F2937" CornerRadius="10"
+            BorderThickness="0" BorderBrush="#1F2937">
+        
+        <Border.Effect>
+            <DropShadowEffect BlurRadius="15"
+                              ShadowDepth="2"
+                              Direction="320"
+                              Opacity="0.4"
+                              Color="Black"/>
+        </Border.Effect>
+
+        <Grid Margin="6" Background="#1F2937"
+              MouseLeftButtonDown="Grid_MouseLeftButtonDown">
+        </Grid>
+    </Border>
 </Window>
