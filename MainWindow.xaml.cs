@@ -2,6 +2,7 @@
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
+using System.Windows.Media.Animation;
 using NAudio.Wave;
 
 namespace LiteBoard
@@ -17,6 +18,7 @@ namespace LiteBoard
         {
             InitializeComponent();
         }
+
         private void MainWindow_Loaded(object sender, RoutedEventArgs e)
         {
             List<string> audioInputs = [];
@@ -97,6 +99,21 @@ namespace LiteBoard
             }
         }
 
+        // Create a method to update the VolumeBar smoothly
+        private void UpdateVolume(double newVolume)
+        {
+            DoubleAnimation animation = new DoubleAnimation
+            {
+                From = VolumeBar.Value,
+                To = newVolume,
+                Duration = TimeSpan.FromMilliseconds(100),
+                EasingFunction = new QuadraticEase { EasingMode = EasingMode.EaseOut }
+            };
+
+            VolumeBar.BeginAnimation(ProgressBar.ValueProperty, animation);
+        }
+
+        // Use selected audio input device and start recording
         private void StartRecording(int deviceIndex)
         {
             // Stop and dispose the previous record
@@ -130,10 +147,7 @@ namespace LiteBoard
             double VolumePercent = rms * 100;
 
             // Dispatcher to update VolumeBar
-            Dispatcher.Invoke(() =>
-            {
-                VolumeBar.Value = VolumePercent;
-            });
+            Dispatcher.Invoke(() => UpdateVolume(VolumePercent));
         }
 
         private void Window_Closed(object sender, EventArgs e)
@@ -141,8 +155,6 @@ namespace LiteBoard
             // On app close, stop recording and dispose the WaveInEvent
             waveIn?.StopRecording();
             waveIn?.Dispose();
-
-            base.OnClosed(e);
         }
     }
 }
