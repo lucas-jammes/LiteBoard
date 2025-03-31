@@ -1,13 +1,7 @@
-﻿using System.Text;
+﻿using System.Text.RegularExpressions;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 using NAudio.Wave;
 
 namespace LiteBoard
@@ -21,6 +15,29 @@ namespace LiteBoard
         {
             InitializeComponent();
         }
+        private void MainWindow_Loaded(object sender, RoutedEventArgs e)
+        {
+            List<string> audioInputs = [];
+
+            // Browse input devices, add to audioInputs list
+            for (int i = 0; i < WaveIn.DeviceCount; i++)
+            {
+                WaveInCapabilities deviceInfo = WaveIn.GetCapabilities(i);
+
+                // Remove everything after the first parenthesis, space included
+                string productName = Regex.Replace(deviceInfo.ProductName, @"\s*\(.*", "");
+
+                audioInputs.Add(productName);
+            }
+
+            // Assign audioInputs to ComboBox
+            AudioInput.ItemsSource = audioInputs;
+
+            if (AudioInput.SelectedIndex == -1)
+            {
+                ComboBoxWatermark.Visibility = Visibility.Visible;
+            }
+        }
 
         // Drag window by clicking on the grid
         private void Grid_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
@@ -30,21 +47,26 @@ namespace LiteBoard
                 DragMove();
             }
         }
+
+        // Close button
         private void CloseButton_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
             Close();
         }
 
+        // Volume to 0 when clicking on Volume Down image
         private void VolumeDown_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
             Slider.Value = 0;
         }
 
+        // Volume to 100 when clicking on Volume Up image
         private void VolumeUp_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
             Slider.Value = 100;
         }
 
+        // Mute/Unmute when clicking on the Microphone image
         private void MicrophoneOn_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
             if (MicrophoneOn.Visibility == Visibility.Visible)
@@ -59,30 +81,10 @@ namespace LiteBoard
             }
         }
 
-        private void AudioInput_Loaded(object sender, RoutedEventArgs e)
-        {
-            var audioInputs = new List<string>();
-
-            // Browse input devices, add to audioInputs list
-            for (int i = 0; i < WaveIn.DeviceCount; i++)
-            {
-                var deviceInfo = WaveIn.GetCapabilities(i);
-                audioInputs.Add(deviceInfo.ProductName);
-            }
-
-            // Assign audioInputs to ComboBox
-            AudioInput.ItemsSource = audioInputs;
-
-            if (AudioInput.SelectedIndex == -1)
-            {
-                ComboBoxTemplate.Visibility = Visibility.Visible;
-            }
-        }
-
+        // Hide Watermark when a selection is made
         private void AudioInput_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            // Hide Watermark when a selection is made
-            ComboBoxTemplate.Visibility = Visibility.Hidden;
+            ComboBoxWatermark.Visibility = Visibility.Hidden;
         }
     }
 }

@@ -8,7 +8,7 @@
         mc:Ignorable="d"
         Title="LiteBoard" Height="300" Width="900"
         WindowStyle="None" ResizeMode="NoResize"
-        AllowsTransparency="True" Background="Transparent">
+        AllowsTransparency="True" Background="Transparent" Loaded="MainWindow_Loaded">
 
     <Border Margin="10" Background="#1F2937" CornerRadius="10"
             BorderThickness="0" BorderBrush="#1F2937" Cursor="">
@@ -25,12 +25,13 @@
               MouseLeftButtonDown="Grid_MouseLeftButtonDown">
             <fa:ImageAwesome x:Name="MicrophoneOn" Icon="Microphone" Foreground="White" Width="24" Height="20" Margin="5,10,839,238" Cursor="Hand" MouseLeftButtonDown="MicrophoneOn_MouseLeftButtonDown"/>
             <fa:ImageAwesome x:Name="MicrophoneOff" Icon="MicrophoneSlash" Foreground="White" Width="24" Height="20" Margin="5,10,839,238" Cursor="Hand" MouseLeftButtonDown="MicrophoneOn_MouseLeftButtonDown" Visibility="Hidden"/>
-            <fa:ImageAwesome x:Name="VolumeUp" Icon="VolumeUp" Foreground="White" Width="24" Height="20" Margin="787,10,57,238" Cursor="Hand" MouseLeftButtonDown="VolumeUp_MouseLeftButtonDown"/>
-            <fa:ImageAwesome x:Name="VolumeDown" Icon="VolumeDown" Foreground="White" Width="24" Height="20" Margin="632,10,212,238" Cursor="Hand" MouseLeftButtonDown="VolumeDown_MouseLeftButtonDown"/>
-            <Slider x:Name="Slider" HorizontalAlignment="Left" Margin="662,11,0,0" VerticalAlignment="Top" Width="120" Maximum="100" LargeChange="10" SmallChange="1" Cursor="Hand"/>
-            <fa:ImageAwesome x:Name="CloseButton" Icon="Times" Foreground="White" Width="10" Height="10" Margin="848,10,10,248" Cursor="Hand" MouseLeftButtonDown="CloseButton_MouseLeftButtonDown"/>
-            <ComboBox x:Name="AudioInput" HorizontalAlignment="Left" Margin="36,10,0,0" VerticalAlignment="Top" Width="230" Height="20" Loaded="AudioInput_Loaded" SelectionChanged="AudioInput_SelectionChanged"/>
-            <TextBox x:Name="ComboBoxTemplate" HorizontalAlignment="Left" Margin="36,10,0,238" TextWrapping="Wrap" Text="Select Input Device" VerticalContentAlignment="Center" Width="230" Height="20" Background="Transparent" FontFamily="Bahnschrift" Visibility="Hidden" IsHitTestVisible="False"/>
+            <fa:ImageAwesome x:Name="VolumeUp" Icon="VolumeUp" Foreground="White" Width="24" Height="20" Margin="823,10,21,238" Cursor="Hand" MouseLeftButtonDown="VolumeUp_MouseLeftButtonDown"/>
+            <fa:ImageAwesome x:Name="VolumeDown" Icon="VolumeDown" Foreground="White" Width="24" Height="20" Margin="672,10,172,238" Cursor="Hand" MouseLeftButtonDown="VolumeDown_MouseLeftButtonDown"/>
+            <Slider x:Name="Slider" HorizontalAlignment="Left" Margin="698,10,0,0" VerticalAlignment="Top" Width="120" Maximum="100" LargeChange="10" SmallChange="1" Cursor="Hand"/>
+            <fa:ImageAwesome x:Name="CloseButton" Icon="Times" Foreground="White" Width="10" Height="10" Margin="858,0,0,258" Cursor="Hand" MouseLeftButtonDown="CloseButton_MouseLeftButtonDown"/>
+            <ComboBox x:Name="AudioInput" HorizontalAlignment="Left" Margin="36,10,0,0" VerticalAlignment="Top" Width="171" Height="20" SelectionChanged="AudioInput_SelectionChanged" FontFamily="Bahnschrift"/>
+            <TextBox x:Name="ComboBoxWatermark" HorizontalAlignment="Left" Margin="36,10,0,238" TextWrapping="Wrap" Text="Select Input Device" VerticalContentAlignment="Center" Width="171" Height="20" Background="Transparent" FontFamily="Bahnschrift" Visibility="Hidden" IsHitTestVisible="False"/>
+            <ProgressBar x:Name="VolumeBar" Width="372" Height="20" Margin="248,10,248,238" Background="Black" Foreground="Green" Minimum="0" Maximum="100"/>
         </Grid>
     </Border>
 </Window>
