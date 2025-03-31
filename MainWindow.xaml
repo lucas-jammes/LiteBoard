@@ -8,7 +8,7 @@
         mc:Ignorable="d"
         Title="LiteBoard" Height="300" Width="900"
         WindowStyle="None" ResizeMode="NoResize"
-        AllowsTransparency="True" Background="Transparent" Loaded="MainWindow_Loaded">
+        AllowsTransparency="True" Background="Transparent" Loaded="MainWindow_Loaded" Closed="Window_Closed">
 
     <Border Margin="10" Background="#1F2937" CornerRadius="10"
             BorderThickness="0" BorderBrush="#1F2937" Cursor="">

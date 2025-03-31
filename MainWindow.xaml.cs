@@ -11,6 +11,8 @@ namespace LiteBoard
     /// </summary>
     public partial class MainWindow : Window
     {
+        private WaveInEvent? waveIn;
+
         public MainWindow()
         {
             InitializeComponent();
@@ -81,10 +83,66 @@ namespace LiteBoard
             }
         }
 
-        // Hide Watermark when a selection is made
         private void AudioInput_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            ComboBoxWatermark.Visibility = Visibility.Hidden;
+            // Get the selected Index
+            int selectedIndex = AudioInput.SelectedIndex;
+            if (selectedIndex >= 0)
+            {
+                // Call StartRecording method with the selected Index
+                StartRecording(selectedIndex);
+
+                // Hide Watermark when a selection is made
+                ComboBoxWatermark.Visibility = Visibility.Hidden;
+            }
+        }
+
+        private void StartRecording(int deviceIndex)
+        {
+            // Stop and dispose the previous record
+            waveIn?.StopRecording();
+            waveIn?.Dispose();
+
+            waveIn = new WaveInEvent
+            {
+                DeviceNumber = deviceIndex,
+                WaveFormat = new WaveFormat(44100, 1) // 44.1 kHz, 16-bit, mono
+            };
+
+            waveIn.DataAvailable += WaveIn_DataAvailable!;
+            waveIn.StartRecording();
+        }
+
+        private void WaveIn_DataAvailable(object sender, WaveInEventArgs e)
+        {
+            double sum = 0;
+            int bytesPerSample = 2; // 16-bit audio
+            int sampleCount = e.BytesRecorded / bytesPerSample;
+
+            for (int i = 0; i < e.BytesRecorded; i += bytesPerSample)
+            {
+                short sample = BitConverter.ToInt16(e.Buffer, i);
+                double sampleFloat = sample / 32768.0; // to float
+                sum += sampleFloat * sampleFloat;
+            }
+
+            double rms = Math.Sqrt(sum / sampleCount);
+            double VolumePercent = rms * 100;
+
+            // Dispatcher to update VolumeBar
+            Dispatcher.Invoke(() =>
+            {
+                VolumeBar.Value = VolumePercent;
+            });
+        }
+
+        private void Window_Closed(object sender, EventArgs e)
+        {
+            // On app close, stop recording and dispose the WaveInEvent
+            waveIn?.StopRecording();
+            waveIn?.Dispose();
+
+            base.OnClosed(e);
         }
     }
 }
