@@ -49,14 +49,14 @@ This app follows a minimal UI design.
 
 ### Typography
 
-- **Font**: [Bahnschrift](https://learn.microsoft.com/en-us/typography/font-list/bahnschrift)
+- **Font**: [Bahnschrift](https://learn.microsoft.com/en-us/typography/font-list/bahnschrift "Go to Microsoft documentation")
 - **Size**: 12px
 
 ### Icons
 
-- Microphone icons: [microphone](https://fontawesome.com/icons/microphone?f=classic&s=solid), [microphone-slash](https://fontawesome.com/icons/microphone-slash?f=classic&s=solid)  
-- Volume icons : [volume-down](https://fontawesome.com/icons/volume-down?style=solid), [volume-up](https://fontawesome.com/icons/volume-up?style=solid)  
-- Miscellaneous : [xmark](https://fontawesome.com/icons/times?style=solid)  
+- Microphone icons: [microphone](https://fontawesome.com/icons/microphone?f=classic&s=solid "Link to FontAwesome icon"), [microphone-slash](https://fontawesome.com/icons/microphone-slash?f=classic&s=solid "Link to FontAwesome icon")  
+- Volume icons : [volume-down](https://fontawesome.com/icons/volume-down?style=solid "Link to FontAwesome icon"), [volume-up](https://fontawesome.com/icons/volume-up?style=solid "Link to FontAwesome icon")  
+- Miscellaneous : [xmark](https://fontawesome.com/icons/times?style=solid "Link to FontAwesome icon")  
 
 ## License
 
