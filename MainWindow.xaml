@@ -31,7 +31,7 @@
             <fa:ImageAwesome x:Name="CloseButton" Icon="Times" Foreground="#FFEDCB" Width="10" Height="10" Margin="858,0,0,258" Cursor="Hand" MouseLeftButtonDown="CloseButton_MouseLeftButtonDown"/>
             <ComboBox x:Name="AudioInput" HorizontalAlignment="Left" Margin="36,10,0,0" VerticalAlignment="Top" Width="171" Height="20" SelectionChanged="AudioInput_SelectionChanged" FontFamily="Bahnschrift"/>
             <TextBox x:Name="ComboBoxWatermark" HorizontalAlignment="Left" Margin="36,10,0,238" TextWrapping="Wrap" Text="Select Input Device" VerticalContentAlignment="Center" Width="171" Height="20" Background="Transparent" FontFamily="Bahnschrift" Visibility="Hidden" IsHitTestVisible="False"/>
-            <ProgressBar x:Name="VolumeBar" Width="372" Height="20" Margin="248,10,248,238" Background="#FFEDCB" Foreground="#DEA01E" Minimum="0" Maximum="100" Opacity="0.8"/>
+            <ProgressBar x:Name="VolumeBar" Width="372" Height="20" Margin="248,10,248,238" Background="#FFEDCB" Foreground="#DEA01E" Minimum="0" Maximum="100" Opacity="1"/>
         </Grid>
     </Border>
 </Window>
